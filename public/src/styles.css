@@ -4,9 +4,9 @@
 }
 
 body{
-    width: 90%;
+    width: 95%;
     max-width: 720px;
-    min-width: 380px;
+    min-width: 320px;
     height: auto;
     margin: 6px auto;
     display: flex;
@@ -21,24 +21,29 @@ div{
     border: 1px solid gray;
     min-height: 60px;
     height: auto;
-    margin: 12px;
+    margin: 1px;
 }
 
 .potential, .loads, .balance{
     display: flex;
     flex-wrap: wrap;
-    gap: 3px;
+    gap: 1px;
     justify-content: center;
+    margin: 6px;
 }
 .coordenates, .radiation{
-    width: 300px;
+    width: 48%;
     height: 60px;
+    text-align: right;
 }
 .day, .night{
-    width: 300px;
+    width: 250px;
     height: 300px;
 }
 .system, .summary{
-    width: 300px;
+    width: 250px;
     height: 150px;
+}
+input{
+    width: 60%;
 }
