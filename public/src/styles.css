@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width: 90%;
+    max-width: 720px;
+    min-width: 380px;
+    height: auto;
+    margin: 6px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid gray;
+    border-radius: 12px;
+    font-family: system-ui, -apple-system, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+div{
+    border: 1px solid gray;
+    min-height: 60px;
+    height: auto;
+    margin: 12px;
+}
+
+.potential, .loads, .balance{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    justify-content: center;
+}
+.coordenates, .radiation{
+    width: 300px;
+    height: 60px;
+}
+.day, .night{
+    width: 300px;
+    height: 300px;
+}
+.system, .summary{
+    width: 300px;
+    height: 150px;
+}
