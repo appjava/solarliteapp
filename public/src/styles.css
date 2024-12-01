@@ -32,18 +32,31 @@ div{
     margin: 6px;
 }
 .coordenates, .radiation{
-    width: 48%;
+    width: 250px;
     height: 60px;
-    text-align: right;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.coordenates input{
+    width: 150px;
+    text-align: center;
 }
 .day, .night{
     width: 250px;
-    height: 300px;
+    height: 320px;
+    text-align: center;
 }
 .system, .summary{
     width: 250px;
     height: 150px;
 }
 input{
-    width: 60%;
+    width: 45px;
+    text-align: center;
+    font-size: 12px;
+}
+table{
+    margin: 0 auto;
 }

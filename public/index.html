@@ -15,11 +15,188 @@
             <p>Long:
             <input type="text" placeholder="Enter your..."></p>
         </div>
-        <div class="radiation"></div>
+        <div class="radiation">
+            <p>R.Direct: <span id="direct">0</span> W/m2</p>
+            <p>R.Diffuse: <span id="diffuse">0</span> W/m2</p>
+        </div>
     </div>
     <div class="loads">
-        <div class="day"></div>
-        <div class="night"></div>
+        <div class="day">
+            <h4>Daily Loads</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Device</th>
+                        <th>Cant</th>
+                        <th>Watts</th>
+                        <th>Hours</th>
+                        <th>WH</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>TV</td>
+                        <td><input id="cant0" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt0" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour0" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh0">-</td>
+                    </tr>
+                    <tr>
+                        <td>Laptop</td>
+                        <td><input id="cant1" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt1" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour1" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh1">-</td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td><input id="cant2" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt2" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour2" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh2">-</td>
+                    </tr>
+                    <tr>
+                        <td>Tablet</td>
+                        <td><input id="cant3" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt3" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour3" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh3">-</td>
+                    </tr>
+                    <tr>
+                        <td>Light</td>
+                        <td><input id="cant4" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt4" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour4" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh4">-</td>
+                    </tr>
+                    <tr>
+                        <td>Wifi</td>
+                        <td><input id="cant5" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt5" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour5" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh5">-</td>
+                    </tr>
+                    <tr>
+                        <td>HiFi</td>
+                        <td><input id="cant6" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt6" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour6" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh6">-</td>
+                    </tr>
+                    <tr>
+                        <td>CCTV</td>
+                        <td><input id="cant7" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt7" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour7" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh7">-</td>
+                    </tr>
+                    <tr>
+                        <td>IoT</td>
+                        <td><input id="cant8" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt8" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour8" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh8">-</td>
+                    </tr>
+                    <tr>
+                        <td>Others</td>
+                        <td><input id="cant9" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt9" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour9" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh9">-</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h5>Total WH: <span id="totalDay">0</span></h5>
+            <h5>Simultaneus Load: <span id="simulDay">0</span> W</h5>
+        </div>
+        <div class="night">
+            <h4>Nightly Loads</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Device</th>
+                        <th>Cant</th>
+                        <th>Watts</th>
+                        <th>Hours</th>
+                        <th>WH</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>TV</td>
+                        <td><input id="cant0" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt0" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour0" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh0">-</td>
+                    </tr>
+                    <tr>
+                        <td>Laptop</td>
+                        <td><input id="cant1" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt1" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour1" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh1">-</td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td><input id="cant2" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt2" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour2" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh2">-</td>
+                    </tr>
+                    <tr>
+                        <td>Tablet</td>
+                        <td><input id="cant3" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt3" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour3" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh3">-</td>
+                    </tr>
+                    <tr>
+                        <td>Light</td>
+                        <td><input id="cant4" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt4" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour4" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh4">-</td>
+                    </tr>
+                    <tr>
+                        <td>Wifi</td>
+                        <td><input id="cant5" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt5" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour5" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh5">-</td>
+                    </tr>
+                    <tr>
+                        <td>HiFi</td>
+                        <td><input id="cant6" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt6" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour6" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh6">-</td>
+                    </tr>
+                    <tr>
+                        <td>CCTV</td>
+                        <td><input id="cant7" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt7" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour7" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh7">-</td>
+                    </tr>
+                    <tr>
+                        <td>IoT</td>
+                        <td><input id="cant8" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt8" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour8" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh8">-</td>
+                    </tr>
+                    <tr>
+                        <td>Others</td>
+                        <td><input id="cant9" type="number" placeholder="0" min="0" max="100" onfocusout="calcular()"></td>
+                        <td><input id="watt9" type="number" placeholder="0" min="0" onfocusout="calcular()"></td>
+                        <td><input id="hour9" type="number" placeholder="0" min="0" max="24" onfocusout="calcular()"></td>
+                        <td id="wh9">-</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h5>Total WH: <span id="totalNight">0</span></h5>
+            <h5>Simultaneus Load: <span id="simulNight">0</span> W</h5>
+        </div>
     </div>
     <div class="balance">
         <div class="system"></div>
