@@ -15,6 +15,7 @@ body{
     border: 1px solid gray;
     border-radius: 12px;
     font-family: system-ui, -apple-system, 'Open Sans', 'Helvetica Neue', sans-serif;
+    box-sizing: border-box;
 }
 
 div{
@@ -47,11 +48,12 @@ div{
 }
 .day, .night{
     width: 250px;
-    height: 380px;
+    height: auto;
     text-align: center;
     display: flex;
     flex-direction: column;
     gap: 6px;
+    padding: 6px;
 }
 .system, .summary{
     width: 250px;
