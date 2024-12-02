@@ -11,9 +11,9 @@
     <div class="potential">
         <div class="coordenates">
             <p>Lat:
-            <input type="text" placeholder="Enter your..."></p>
+            <input id="lat" type="text" placeholder="Enter yours..."></p>
             <p>Long:
-            <input type="text" placeholder="Enter your..."></p>
+            <input id="long" type="text" placeholder="Enter yours..."></p>
         </div>
         <div class="radiation">
             <p>R.Direct: <span id="direct">0</span> W/m2</p>
@@ -106,7 +106,7 @@
                     </tr>
                 </tbody>
             </table>
-            <h5>Total WH: <span id="totalDay">0</span></h5>
+            <h5>Total Load: <span id="totalDay">0</span> Wh</h5>
             <h5>Simultaneus Load: <span id="simulDay">0</span> W</h5>
         </div>
         <div class="night">
@@ -194,13 +194,43 @@
                     </tr>
                 </tbody>
             </table>
-            <h5>Total WH: <span id="totalNight">0</span></h5>
+            <h5>Total Load: <span id="totalNight">0</span> Wh</h5>
             <h5>Simultaneus Load: <span id="simulNight">0</span> W</h5>
         </div>
     </div>
     <div class="balance">
-        <div class="system"></div>
-        <div class="summary"></div>
+        <div class="system">
+            <p>PV Power:
+                <select id="power" name="power">
+                    <option value="0">Select...</option>
+                    <option value="50">50W</option>
+                    <option value="100">100W</option>
+                    <option value="150">150W</option>
+                    <option value="200">200W</option>
+                    <option value="250">250W</option>
+                    <option value="300">300W</option>
+                    <option value="350">350W</option>
+                    <option value="400">400W</option>
+                    <option value="450">450W</option>
+                    <option value="500">500W</option>
+                </select>
+            </p>
+            <p>PV Type:
+                <select id="type" name="type">
+                    <option value="0">Select...</option>
+                    <option value="mono">Monocristalino</option>
+                    <option value="poly">Policristalino</option>
+                </select>
+            </p>
+            <p>DC Inverter Min: <span id="inverter">0</span> W</p>
+            <p>12DC Battery Min: <span id="battery">0</span> Ah</p>
+        </div>
+        <div class="summary">
+            <p>Daily Generated: <span id="inverter">0</span> Wh</p>
+            <p>Daily Used: <span id="battery">0</span> Wh</p>
+            <p>Reserve Storaged: <span id="inverter">0</span> Wh</p>
+            <p>Monthly Generated: <span id="battery">0</span> Wh/m</p>
+        </div>
     </div>
 </body>
 </html>

@@ -18,7 +18,9 @@ body{
 }
 
 div{
-    border: 1px solid gray;
+    border: 1px dotted gray;
+    border-radius: 12px;
+    padding: 3px;
     min-height: 60px;
     height: auto;
     margin: 1px;
@@ -45,18 +47,58 @@ div{
 }
 .day, .night{
     width: 250px;
-    height: 320px;
+    height: 380px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 .system, .summary{
     width: 250px;
     height: 150px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.system input{
+    width: 150px;
+    text-align: center;
 }
 input{
     width: 45px;
     text-align: center;
     font-size: 12px;
+    border-radius: 6px;
+    height: 21px;
+    border: 1px solid gray;
+    background: gray;
+    color: white;
 }
 table{
-    margin: 0 auto;
+    margin: 12px auto;
+}
+span{
+    border: 1px solid gray;
+    border-radius: 6px;
+    padding: 0 12px;
+    display: inline;
+    background: ynoneellow;
+}
+select{
+    text-align: center;
+    width: 120px;
+    height: 30px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    appearance: textfield;
 }
