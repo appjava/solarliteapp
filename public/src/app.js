@@ -8,6 +8,8 @@ let eEolica = [];
 
 let totalW = 0;
 let totalWH = 0;
+let DtotalWH = 0;
+let NtotalWH = 0;
 
 let totalShort = 0;
 let totalDirect = 0;
@@ -15,10 +17,13 @@ let totalDiffuse = 0;
 
 let potInstalada = 0;
 let inverter = 0;
+let inverterD = 0;
+let inverterN = 0;
 
 let horaGenerada = [];
 
-let newDev = [];
+let newDevD = [];
+let newDevN = [];
 
 //defaultDevices
   let defaultDevicesDay = [
@@ -46,15 +51,17 @@ let newDev = [];
     {dev:9, cant:0, watts:0, hours:0},
   ]
 
-if(!localStorage.getItem('DevicesDay') || !localStorage.getItem('DevicesNight')){
+if(!localStorage.getItem('DevicesDay')){
   localStorage.setItem('DevicesDay', JSON.stringify(defaultDevicesDay));
+}
+if(!localStorage.getItem('DevicesNight')){
   localStorage.setItem('DevicesNight', JSON.stringify(defaultDevicesNight));
 }
 
 let devicesDay = JSON.parse(localStorage.getItem('DevicesDay'));
-console.log(devicesDay);
+//console.log(devicesDay);
 let devicesNight = JSON.parse(localStorage.getItem('DevicesNight'));
-console.log(devicesNight);
+//console.log(devicesNight);
 //-------------------
 
 //defaultCoordenates
@@ -64,7 +71,7 @@ let defaultCoord = [
 //------------------------
 
 //defaultPowerPanels
-let defaultPowerP = 150;
+let defaultPowerP = 0;
 
 if(!localStorage.getItem('powerPanels')){
   localStorage.setItem('powerPanels', JSON.stringify(defaultPowerP));
@@ -260,11 +267,17 @@ cargas();
 
 function calcular(){
     totalWH = 0;
+    DtotalWH = 0;
+    NtotalWH = 0;
     inverter = 0;
-    let meArray = [];
-    let inversor = [];
+    let meArrayD = [];
+    let meArrayN = [];
+    let inversorD = [];
+    let inversorN = [];
     let prendido = 0;
-    newDev = [];
+    let Nprendido = 0;
+    newDevD = [];
+    newDevN = [];
     
     for (let i = 0; i < 10; i++){
         var cantidad = document.getElementById("Dcant"+i).value;
@@ -286,28 +299,90 @@ function calcular(){
         }
 
         let tempDev = {dev:i, cant:parseInt(cantidad), watts:parseInt(vatios), hours:parseInt(horas)};
-        newDev.push(tempDev);
-        let wattHora = parseFloat(cantidad)*parseFloat(vatios)*parseFloat(horas);
-        document.getElementById("Dwh"+i).innerHTML = wattHora; 
-        totalWH = totalWH + wattHora;
-        meArray.push(wattHora);
+        newDevD.push(tempDev);
 
-        let sumInvert = parseFloat(cantidad)*parseFloat(vatios)*prendido;
-        inversor.push(sumInvert);
+        let DwattHora = parseFloat(cantidad)*parseFloat(vatios)*parseFloat(horas);
+        document.getElementById("Dwh"+i).innerHTML = DwattHora; 
+        
+        
+
+
+        
+        DtotalWH = DtotalWH + DwattHora;
+        meArrayD.push(DwattHora);
+
+        let sumInvertD = parseFloat(cantidad)*parseFloat(vatios)*prendido;
+        inversorD.push(sumInvertD);
     }
+    for (let j = 0; j < 10; j++){
+        var Ncantidad = document.getElementById("Ncant"+j).value;
+        if(!Ncantidad || Ncantidad == 0){
+            Ncantidad = 0;
+        }
+        
+        var Nvatios = document.getElementById("Nwatt"+j).value;
+        if(!Nvatios || Nvatios == 0){
+            Nvatios = 0;
+        }
+        
+        var Nhoras = document.getElementById("Nhour"+j).value;
+        if(!Nhoras || Nhoras == 0){
+            Nhoras = 0;
+            Nprendido = 0;
+        }else{
+            Nprendido = 1;
+        }
+
+        let NtempDev = {dev:j, cant:parseInt(Ncantidad), watts:parseInt(Nvatios), hours:parseInt(Nhoras)};
+        newDevN.push(NtempDev);
+
+        let NwattHora = parseFloat(Ncantidad)*parseFloat(Nvatios)*parseFloat(Nhoras);
+        document.getElementById("Nwh"+j).innerHTML = NwattHora; 
+        
+        
+
+
+        
+        NtotalWH = NtotalWH + NwattHora;
+        meArrayN.push(NwattHora);
+
+        let sumInvertN = parseFloat(Ncantidad)*parseFloat(Nvatios)*Nprendido;
+        inversorN.push(sumInvertN);
+    }
+
     
-    //statusDevice = newDev;
-    localStorage.setItem('DevicesDay', JSON.stringify(newDev));
+    //statusDevice = newDevD;
+    localStorage.setItem('DevicesDay', JSON.stringify(newDevD));
     devicesDay = JSON.parse(localStorage.getItem('DevicesDay'));
-    console.log(devicesDay);
+    //console.log(devicesDay);
+    //statusDevice = newDevN;
+    localStorage.setItem('DevicesNight', JSON.stringify(newDevN));
+    devicesNight = JSON.parse(localStorage.getItem('DevicesNight'));
+    //console.log(devicesNight);
 
-    document.getElementById('totalDay').innerHTML = totalWH;
 
-    inversor.forEach( num => {
-        inverter += num;
+    document.getElementById('totalDay').innerHTML = DtotalWH;
+    document.getElementById('totalNight').innerHTML = NtotalWH;
+
+    totalWH = DtotalWH;
+
+    inversorD.forEach( num => {
+        inverterD += num;
+    });
+    inversorN.forEach( num => {
+        inverterN += num;
     });
 
-    document.getElementById('simulDay').innerHTML = inverter;
+    document.getElementById('simulDay').innerHTML = inverterD;
+    document.getElementById('simulNight').innerHTML = inverterN;
+
+    if(inverterD > inverterN){
+       inverter = inverterD; 
+    }else if(inverterD < inverterN){
+       inverter = inverterN;
+    }else{
+        inverter = (inverterD + inverterN)/2;
+    }
 
     resumen();
 }
