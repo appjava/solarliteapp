@@ -270,6 +270,8 @@ function calcular(){
     DtotalWH = 0;
     NtotalWH = 0;
     inverter = 0;
+    inverterD = 0;
+    inverterN = 0;
     let meArrayD = [];
     let meArrayN = [];
     let inversorD = [];
